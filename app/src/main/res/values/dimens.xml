@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General app dimensions -->
+    <dimen name="general_margin">8dp</dimen>
+
+    <!-- RecyclerView list item element dimensions -->
+    <dimen name="element_padding">4dp</dimen>
+    <dimen name="title_text_size">18sp</dimen>
+</resources>

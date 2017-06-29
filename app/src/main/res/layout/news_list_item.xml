@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/general_margin"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/section_name_text_view"
+        style="@style/section_name_element_style"
+        tools:text="World news"/>
+
+    <TextView
+        android:id="@+id/title_text_view"
+        style="@style/title_element_style"
+        tools:text="Democracy and academic freedom in Viktor Orbán’s Hungary | Letters from Michael Ignatieff and others"/>
+
+    <TextView
+        android:id="@+id/publication_date_text_view"
+        style="@style/list_item_element_style"
+        tools:text="2017.04.23 18:47"/>
+
+</LinearLayout>
