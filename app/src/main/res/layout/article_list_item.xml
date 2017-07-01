@@ -8,17 +8,17 @@
 
     <TextView
         android:id="@+id/section_name_text_view"
-        style="@style/section_name_element_style"
-        tools:text="World news"/>
+        style="@style/section_name_style"
+        tools:text="@string/sampleSectionText" />
 
     <TextView
         android:id="@+id/title_text_view"
         style="@style/title_element_style"
-        tools:text="Democracy and academic freedom in Viktor Orbán’s Hungary | Letters from Michael Ignatieff and others"/>
+        tools:text="@string/sampleTitleText" />
 
     <TextView
         android:id="@+id/publication_date_text_view"
         style="@style/list_item_element_style"
-        tools:text="2017.04.23 18:47"/>
+        tools:text="@string/samplePublicationDate" />
 
 </LinearLayout>

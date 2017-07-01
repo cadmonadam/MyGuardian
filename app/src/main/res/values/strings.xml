@@ -2,13 +2,13 @@
     <string name="app_name">MyGuardian</string>
 
     <!-- Error messages -->
-    <string name="internet_connection_error">No internet. Please check your connection!</string>
+    <string name="internet_connection_error">No internet connection detected!</string>
     <string name="no_news_error">
-        No news found for keywords: <xliff:g example="ssfghgsf" id="keywords">%s</xliff:g>
+        No article was found for keywords: <xliff:g example="ssfghgsf" id="keywords">%s</xliff:g>
     </string>
 
     <!-- Strings related to Settings -->
-    <string name="settings_title">News App Settings</string>
+    <string name="settings_title">MyGuardian Settings</string>
     <string name="settings_menu_item">Settings</string>
 
     <!-- Strings for order-by Preference -->
@@ -32,6 +32,11 @@
 
     <!-- Strings for search -->
     <string name="my_search_menu_title">Search</string>
-    <string name="search_hint">Search News</string>
+    <string name="search_hint">Search the latest News</string>
+
+    <!-- Strings for sample article list item -->
+    <string name="sampleSectionText">Sport</string>
+    <string name="sampleTitleText">Giants v Cats in big clash, Tigers v Power, Cowboys beat Raiders: sportwatch – live!</string>
+    <string name="samplePublicationDate">2017.07.01 11:50</string>
 
 </resources>

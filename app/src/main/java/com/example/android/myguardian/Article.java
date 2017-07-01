@@ -1,16 +1,16 @@
 package com.example.android.myguardian;
 
 /**
- * Class representing the News queried through Guardian search API
+ * This class demonstrates the Article which is received with the help of the Guardian search API
  */
 
-class News {
+class Article {
     private final String sectionName;
     private final String webPublicationDate;
     private final String webTitle;
     private final String webUrl;
 
-    News(String sectionName, String webPublicationDate, String webTitle, String webUrl) {
+    Article(String sectionName, String webPublicationDate, String webTitle, String webUrl) {
         this.sectionName = sectionName;
         this.webPublicationDate = webPublicationDate;
         this.webTitle = webTitle;

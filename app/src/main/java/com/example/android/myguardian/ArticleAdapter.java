@@ -17,32 +17,32 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Adapter for binding News date to Recycler view item views
+ * With the help of this Adapter we can populate the Recycler view with Article date.
  */
 
-class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
-    private List<News> newsList;
+class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder> {
+    private List<Article> articleList;
     private Context context;
 
-    NewsAdapter(Context context, List<News> newsList) {
+    ArticleAdapter(Context context, List<Article> articleList) {
         this.context = context;
-        this.newsList = newsList;
+        this.articleList = articleList;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View newsListItemView =
-                LayoutInflater.from(context).inflate(R.layout.news_list_item, parent, false);
+                LayoutInflater.from(context).inflate(R.layout.article_list_item, parent, false);
 
-        final NewsAdapter.ViewHolder newsDataViewHolder =
-                new NewsAdapter.ViewHolder(newsListItemView);
+        final ArticleAdapter.ViewHolder articleDataViewHolder =
+                new ArticleAdapter.ViewHolder(newsListItemView);
 
-        // setting onClickListener on the list items that opens the corresponding article online
+        // setting onClickListener on the list items in order to open the corresponding web sites.
         newsListItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // getting the URL of the news at adapters current position
-                String webUrl = newsList.get(newsDataViewHolder.getAdapterPosition()).getWebUrl();
+                // getting the URL of the current Article
+                String webUrl = articleList.get(articleDataViewHolder.getAdapterPosition()).getWebUrl();
                 Uri webUri = Uri.parse(webUrl);
                 Intent intent = new Intent(Intent.ACTION_VIEW, webUri);
                 if (intent.resolveActivity(context.getPackageManager()) != null) {
@@ -51,54 +51,56 @@ class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             }
         });
 
-        return newsDataViewHolder;
+        return articleDataViewHolder;
+
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        if (newsList == null) {
+        if (articleList == null) {
             return;
         }
-        // retrieve the current News object
-        News news = newsList.get(position);
+        // retrieve the current Article object
+        Article article = articleList.get(position);
 
-        viewHolder.sectionNameTextView.setText(news.getSectionName());
-        viewHolder.webTitleTextView.setText(news.getWebTitle());
+        viewHolder.sectionNameTextView.setText(article.getSectionName());
+        viewHolder.webTitleTextView.setText(article.getWebTitle());
 
-        // creating a simple date format that matches the pattern that Guardian API returns
+        // creating a simple date format based on the Guardian API returns
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss",
                 Locale.getDefault());
         Date date = null;
         try {
-            // parse returned date string from Guardian API to a Date object
-            date = simpleDateFormat.parse(news.getWebPublicationDate());
+            // parsing the received date string
+            date = simpleDateFormat.parse(article.getWebPublicationDate());
         } catch (ParseException e) {
-            Log.e("NewsAdapter", e.getMessage());
+            Log.e("ArticleAdapter", e.getMessage());
         }
 
-        // create a pattern that matches the way Hungarian users read date and time
+        // localizing the date format to Hungarian standards
         simpleDateFormat.applyLocalizedPattern("yyyy.MM.dd. HH:mm");
-        // populate the date into the corresponding TextView in the above formatted way
+        // filling the date into the appropriate TextView
         viewHolder.webPublicationDateTextView.setText(simpleDateFormat.format(date));
     }
 
     @Override
     public int getItemCount() {
-        return newsList.size();
+        return articleList.size();
     }
 
-    void setNewsList(List<News> newsList) {
-        this.newsList = newsList;
+    void setArticleList(List<Article> articleList) {
+        this.articleList = articleList;
     }
 
     void clear() {
-        if (!newsList.isEmpty()) {
-            int size = newsList.size();
-            newsList.clear();
+        if (!articleList.isEmpty()) {
+            int size = articleList.size();
+            articleList.clear();
             this.notifyItemRangeRemoved(0, size);
         }
     }
 
+    //using the ViewHolder pattern in order to make the code more efficient
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView sectionNameTextView;
         TextView webPublicationDateTextView;

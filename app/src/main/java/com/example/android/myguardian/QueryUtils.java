@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Collection of static methods that help to retrieve and parse date from Guardian web servers.
+ * With the help of this methods we can retrieve and parse the data from Guardian API.
  */
 
 class QueryUtils {
@@ -30,7 +30,7 @@ class QueryUtils {
      * @param queryUrl the URL used for sending request to the server
      * @return response received from the server
      */
-    static String fetchNewsData(String queryUrl) {
+    static String fetchArticleData(String queryUrl) {
         String response = null;
 
         try {
@@ -50,43 +50,43 @@ class QueryUtils {
     }
 
     /**
-     * Parses the given JSON string into a List of News objects
+     * Parses the given JSON string into a List of Article objects
      *
-     * @param newsJson the JSON string to parse
-     * @return a list of News objects
+     * @param aricleJson the JSON string to parse
+     * @return a list of Article objects
      */
-    static List<News> parseNews(String newsJson) {
-        // if the JSON String is empty or null, then return early
-        if (TextUtils.isEmpty(newsJson)) {
+    static List<Article> parseArticle(String aricleJson) {
+
+        if (TextUtils.isEmpty(aricleJson)) {
             return null;
         }
 
-        List<News> newsList = new ArrayList<>();
+        List<Article> articleList = new ArrayList<>();
 
         try {
-            JSONObject rootJson = new JSONObject(newsJson);
+            JSONObject rootJson = new JSONObject(aricleJson);
             JSONObject response = rootJson.getJSONObject("response");
             JSONArray results = response.getJSONArray("results");
 
             for (int i = 0; i < results.length(); i++) {
-                JSONObject newsData = results.getJSONObject(i);
-                String sectionName = newsData.getString("sectionName");
-                String webPublicationDate = newsData.getString("webPublicationDate");
-                String webTitle = newsData.getString("webTitle");
-                String webUrl = newsData.getString("webUrl");
+                JSONObject articleData = results.getJSONObject(i);
+                String sectionName = articleData.getString("sectionName");
+                String webPublicationDate = articleData.getString("webPublicationDate");
+                String webTitle = articleData.getString("webTitle");
+                String webUrl = articleData.getString("webUrl");
 
-                newsList.add(new News(sectionName, webPublicationDate, webTitle, webUrl));
+                articleList.add(new Article(sectionName, webPublicationDate, webTitle, webUrl));
             }
 
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Error parsing JSON: " + e.getMessage());
         }
 
-        return newsList;
+        return articleList;
     }
 
-    // helper method that converts an inputStream to String object with the help of BufferedReader
-    // and StringBuilder
+    // using the BufferedReader and StringBuilder in order to convert the inputStream to String
+
     private static String convertStreamToString(InputStream inputStream) {
         if (inputStream != null) {
             StringBuilder stringBuilder = new StringBuilder();

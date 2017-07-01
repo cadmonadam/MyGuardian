@@ -17,7 +17,7 @@
         <item name="android:paddingTop">@dimen/element_padding</item>
     </style>
 
-    <style name="section_name_element_style" parent="list_item_element_style">
+    <style name="section_name_style" parent="list_item_element_style">
         <item name="android:textAllCaps">true</item>
     </style>
 

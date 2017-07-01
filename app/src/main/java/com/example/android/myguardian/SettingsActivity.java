@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Class for managing App settings
+ * in this Class we can manager the App settings.
  */
 
 public class SettingsActivity extends AppCompatActivity {
